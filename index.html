@@ -1,700 +1,1613 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>IEEE UNIBEN SB | Project & Talent Pipeline</title>
-  <meta name="description" content="Submit your project, idea, or technical work to the IEEE UNIBEN Student Branch Talent Pipeline." />
-  <style>
-    :root{
-      --bg:#07111f;
-      --bg2:#0c1728;
-      --card:#0f1b2f;
-      --card2:#12213a;
-      --line:rgba(255,255,255,.10);
-      --text:#e9eef8;
-      --muted:#9fb0c7;
-      --accent:#d9b45a;
-      --accent2:#6ea8ff;
-      --ok:#3ddc97;
-      --danger:#ff6b6b;
-      --shadow: 0 24px 80px rgba(0,0,0,.35);
-      --radius: 22px;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IEEE UNIBEN Student Branch — Engineering Submissions</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+/* ─── RESET & BASE ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    *{box-sizing:border-box}
-    html,body{margin:0;padding:0;background:
-      radial-gradient(circle at top left, rgba(109,168,255,.12), transparent 25%),
-      radial-gradient(circle at top right, rgba(217,180,90,.12), transparent 24%),
-      linear-gradient(180deg, var(--bg), var(--bg2));
-      color:var(--text);
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    }
+:root {
+  --bg:        #060A13;
+  --bg2:       #0B1020;
+  --bg3:       #111827;
+  --glass:     rgba(255,255,255,0.035);
+  --glass-b:   rgba(255,255,255,0.07);
+  --blue:      #2563EB;
+  --blue-lt:   #3B82F6;
+  --blue-glow: rgba(37,99,235,0.25);
+  --gold:      #C9A84C;
+  --gold-lt:   #E0C272;
+  --gold-glow: rgba(201,168,76,0.2);
+  --text:      #E2E8F4;
+  --text-2:    #8B97AB;
+  --text-3:    #4E5A6B;
+  --border:    rgba(255,255,255,0.07);
+  --border-b:  rgba(255,255,255,0.12);
+  --radius:    18px;
+  --radius-sm: 10px;
+  --shadow:    0 4px 40px rgba(0,0,0,0.6);
+}
 
-    a{color:inherit}
-    .wrap{max-width:1180px;margin:0 auto;padding:28px 18px 60px}
-    .hero{
-      display:grid;
-      grid-template-columns: 1.15fr .85fr;
-      gap:24px;
-      align-items:stretch;
-      margin-top:14px;
-    }
+html { scroll-behavior: smooth; }
 
-    .panel{
-      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
-      border:1px solid var(--line);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(18px);
-    }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  line-height: 1.65;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
 
-    .hero-copy{
-      padding:28px;
-      position:relative;
-      overflow:hidden;
-    }
+/* noise grain overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.5;
+}
 
-    .hero-copy::after{
-      content:"";
-      position:absolute; inset:auto -120px -120px auto;
-      width:260px;height:260px;border-radius:50%;
-      background: radial-gradient(circle, rgba(217,180,90,.20), transparent 68%);
-      pointer-events:none;
-    }
+/* ─── TYPOGRAPHY ────────────────────────────────────────────────── */
+h1, h2, h3, h4 { font-family: 'Syne', sans-serif; letter-spacing: -0.02em; line-height: 1.15; }
 
-    .eyebrow{
-      display:inline-flex;
-      gap:10px;
-      align-items:center;
-      padding:8px 14px;
-      border:1px solid rgba(217,180,90,.22);
-      background: rgba(217,180,90,.08);
-      color:#f2e6c6;
-      border-radius:999px;
-      font-size:.86rem;
-      letter-spacing:.03em;
-      font-weight:600;
-      margin-bottom:14px;
-    }
+.mono { font-family: 'DM Mono', monospace; }
 
-    h1{
-      margin:0;
-      font-size:clamp(2rem, 4vw, 4.1rem);
-      line-height:1.02;
-      letter-spacing:-.04em;
-    }
-    .lead{
-      margin:16px 0 0;
-      max-width:62ch;
-      color:var(--muted);
-      font-size:1.02rem;
-      line-height:1.75;
-    }
+/* ─── LAYOUT ────────────────────────────────────────────────────── */
+.container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
 
-    .hero-grid{
-      display:grid;
-      grid-template-columns: repeat(3, minmax(0,1fr));
-      gap:14px;
-      margin-top:22px;
-    }
+section { position: relative; z-index: 1; }
 
-    .stat{
-      padding:16px;
-      border-radius:18px;
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.03);
-    }
-    .stat strong{
-      display:block;
-      font-size:1rem;
-      margin-bottom:6px;
-      color:#fff;
-    }
-    .stat span{color:var(--muted);font-size:.93rem;line-height:1.5}
+/* ─── HERO ──────────────────────────────────────────────────────── */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 80px 24px 100px;
+  position: relative;
+  overflow: hidden;
+}
 
-    .logos{
-      padding:18px;
-      display:grid;
-      gap:16px;
-    }
+/* radial glow layers */
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 40% at 50% 0%, rgba(37,99,235,0.14) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 30% at 20% 80%, rgba(201,168,76,0.06) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 50% at 80% 60%, rgba(37,99,235,0.05) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+}
 
-    .logo-card{
-      border-radius:18px;
-      border:1px solid var(--line);
-      background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
-      padding:18px;
-      display:flex;
-      align-items:center;
-      gap:14px;
-      min-height:124px;
-    }
-    .logo-card img{
-      width:84px;height:84px;object-fit:contain;
-      background:rgba(255,255,255,.96);
-      border-radius:18px;
-      padding:10px;
-      flex:0 0 auto;
-    }
-    .logo-card h3{margin:0 0 6px;font-size:1.02rem}
-    .logo-card p{margin:0;color:var(--muted);line-height:1.55;font-size:.92rem}
+.hero > * { position: relative; z-index: 1; }
 
-    .section-note{
-      margin:22px 0 18px;
-      display:grid;
-      grid-template-columns: repeat(3, minmax(0,1fr));
-      gap:14px;
-    }
-    .note{
-      padding:18px;
-      border-radius:18px;
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.03);
-    }
-    .note .tag{
-      display:inline-block;
-      font-size:.76rem;
-      letter-spacing:.08em;
-      text-transform:uppercase;
-      color:#d7e7ff;
-      opacity:.8;
-      margin-bottom:10px;
-    }
-    .note h4{margin:0 0 8px;font-size:1rem}
-    .note p{margin:0;color:var(--muted);line-height:1.55;font-size:.92rem}
+/* grid lines decoration */
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 80%);
+  pointer-events: none;
+  z-index: 0;
+}
 
-    .form-shell{
-      margin-top:20px;
-      padding:24px;
-      overflow:hidden;
-    }
+/* logo */
+.logo-wrap {
+  margin-bottom: 36px;
+}
 
-    .form-head{
-      display:flex;
-      justify-content:space-between;
-      gap:16px;
-      align-items:flex-start;
-      margin-bottom:18px;
-      flex-wrap:wrap;
-    }
-    .form-head h2{margin:0;font-size:1.5rem}
-    .form-head p{margin:6px 0 0;color:var(--muted);line-height:1.6;max-width:70ch}
-    .deadline{
-      padding:12px 14px;
-      border-radius:16px;
-      background: rgba(61,220,151,.08);
-      border:1px solid rgba(61,220,151,.20);
-      color:#d7ffe9;
-      font-weight:600;
-      font-size:.93rem;
-      white-space:nowrap;
-    }
+.logo-img {
+  height: 80px;
+  width: auto;
+  animation: logoFloat 4s ease-in-out infinite;
+  filter: drop-shadow(0 0 16px rgba(201,168,76,0.35));
+}
 
-    form{display:grid;gap:18px}
-    .grid-2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
-    .grid-3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+@keyframes logoFloat {
+  0%, 100% {
+    transform: translateY(0px) scale(1);
+    filter: drop-shadow(0 0 14px rgba(201,168,76,0.3));
+  }
+  50% {
+    transform: translateY(-7px) scale(1.015);
+    filter: drop-shadow(0 0 24px rgba(201,168,76,0.55));
+  }
+}
 
-    .field{
-      display:grid;
-      gap:8px;
-    }
-    label{
-      font-size:.92rem;
-      font-weight:600;
-      color:#eaf0fb;
-    }
-    .req{color:var(--accent)}
-    input, select, textarea{
-      width:100%;
-      border-radius:16px;
-      border:1px solid rgba(255,255,255,.11);
-      background: rgba(5,10,18,.62);
-      color:var(--text);
-      padding:14px 15px;
-      outline:none;
-      transition:.18s ease;
-      font:inherit;
-    }
-    textarea{min-height:130px;resize:vertical}
-    input::placeholder, textarea::placeholder{color:#7e8ea8}
-    input:focus, select:focus, textarea:focus{
-      border-color:rgba(110,168,255,.8);
-      box-shadow:0 0 0 4px rgba(110,168,255,.12);
-    }
+/* eyebrow */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gold);
+  background: rgba(201,168,76,0.08);
+  border: 1px solid rgba(201,168,76,0.2);
+  border-radius: 100px;
+  padding: 6px 16px;
+  margin-bottom: 22px;
+}
 
-    .group{
-      padding:18px;
-      border-radius:20px;
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.025);
-    }
-    .group h3{
-      margin:0 0 4px;
-      font-size:1.05rem;
-    }
-    .group p{
-      margin:0 0 16px;
-      color:var(--muted);
-      line-height:1.55;
-      font-size:.93rem;
-    }
+.eyebrow::before {
+  content: '';
+  display: block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--gold);
+  animation: pulse 2s ease-in-out infinite;
+}
 
-    .checks{
-      display:grid;
-      grid-template-columns:repeat(2,minmax(0,1fr));
-      gap:12px;
-    }
-    .check{
-      display:flex;
-      align-items:flex-start;
-      gap:10px;
-      padding:12px 14px;
-      border-radius:14px;
-      background: rgba(255,255,255,.03);
-      border:1px solid rgba(255,255,255,.08);
-    }
-    .check input{width:18px;height:18px;margin-top:2px;accent-color: var(--accent)}
-    .check span{color:var(--text);font-size:.95rem;line-height:1.45}
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.7); }
+}
 
-    .actions{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:16px;
-      flex-wrap:wrap;
-      margin-top:6px;
-    }
+/* hero heading */
+.hero-title {
+  font-size: clamp(2.4rem, 6vw, 4.2rem);
+  font-weight: 800;
+  background: linear-gradient(135deg, #fff 20%, #a8badb 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 18px;
+  max-width: 760px;
+}
 
-    .btn{
-      appearance:none;
-      border:none;
-      border-radius:16px;
-      padding:14px 18px;
-      background: linear-gradient(135deg, var(--accent), #f1d78f);
-      color:#171717;
-      font-weight:800;
-      font-size:1rem;
-      cursor:pointer;
-      box-shadow: 0 18px 40px rgba(217,180,90,.22);
-      transition: transform .16s ease, opacity .16s ease;
-    }
-    .btn:hover{transform: translateY(-1px)}
-    .btn:disabled{opacity:.7;cursor:not-allowed;transform:none}
+.hero-title span {
+  background: linear-gradient(135deg, var(--gold-lt) 0%, var(--gold) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
 
-    .fineprint{
-      color:var(--muted);
-      line-height:1.6;
-      font-size:.92rem;
-      max-width:74ch;
-    }
+.hero-sub {
+  font-size: 1.05rem;
+  color: var(--text-2);
+  margin-bottom: 22px;
+  max-width: 540px;
+  font-weight: 300;
+}
 
-    .status{
-      display:none;
-      border-radius:16px;
-      padding:14px 16px;
-      margin-bottom:8px;
-      border:1px solid rgba(61,220,151,.18);
-      background: rgba(61,220,151,.08);
-      color:#ddfff0;
-      line-height:1.55;
-    }
-    .status.error{
-      border-color: rgba(255,107,107,.22);
-      background: rgba(255,107,107,.08);
-      color:#ffe3e3;
-    }
+.hero-desc {
+  font-size: 0.875rem;
+  color: var(--text-3);
+  max-width: 480px;
+  line-height: 1.7;
+  font-style: italic;
+  border-left: 2px solid rgba(201,168,76,0.3);
+  padding-left: 16px;
+  text-align: left;
+}
 
-    .hp{display:none !important}
+.hero-cta {
+  display: flex;
+  gap: 12px;
+  margin-top: 40px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
 
-    iframe{display:none}
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 28px;
+  background: linear-gradient(135deg, var(--blue) 0%, #1D4ED8 100%);
+  color: #fff;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 100px;
+  cursor: pointer;
+  text-decoration: none;
+  box-shadow: 0 4px 24px rgba(37,99,235,0.4), 0 1px 0 rgba(255,255,255,0.1) inset;
+  transition: all 0.25s ease;
+  letter-spacing: 0.01em;
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(37,99,235,0.55), 0 1px 0 rgba(255,255,255,0.12) inset;
+}
 
-    @media (max-width: 920px){
-      .hero{grid-template-columns:1fr}
-      .hero-grid,.section-note,.grid-2,.grid-3,.checks{grid-template-columns:1fr}
-      .form-head{flex-direction:column}
-    }
-  </style>
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 28px;
+  color: var(--text-2);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+  border: 1px solid var(--border-b);
+  border-radius: 100px;
+  cursor: pointer;
+  text-decoration: none;
+  background: var(--glass);
+  transition: all 0.25s ease;
+}
+.btn-ghost:hover {
+  color: var(--text);
+  border-color: rgba(255,255,255,0.2);
+  background: rgba(255,255,255,0.06);
+}
+
+/* stats strip */
+.stats-strip {
+  display: flex;
+  gap: 0;
+  margin-top: 60px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--glass);
+  backdrop-filter: blur(12px);
+}
+
+.stat-item {
+  flex: 1;
+  padding: 20px 24px;
+  text-align: center;
+  border-right: 1px solid var(--border);
+}
+.stat-item:last-child { border-right: none; }
+
+.stat-num {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--gold-lt);
+  display: block;
+}
+.stat-lbl {
+  font-size: 0.75rem;
+  color: var(--text-3);
+  font-family: 'DM Mono', monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-top: 2px;
+}
+
+/* ─── SECTION HEADERS ────────────────────────────────────────────── */
+.section-head {
+  text-align: center;
+  margin-bottom: 56px;
+}
+.section-label {
+  display: inline-block;
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--blue-lt);
+  margin-bottom: 12px;
+}
+.section-title {
+  font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 12px;
+}
+.section-body {
+  font-size: 0.9rem;
+  color: var(--text-2);
+  max-width: 480px;
+  margin: 0 auto;
+  font-weight: 300;
+}
+
+/* ─── FEATURES ──────────────────────────────────────────────────── */
+.features { padding: 100px 0; }
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.feature-card {
+  background: var(--glass);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 36px 28px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+.feature-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(201,168,76,0.4), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.feature-card:hover {
+  border-color: var(--border-b);
+  background: rgba(255,255,255,0.055);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 48px rgba(0,0,0,0.4);
+}
+.feature-card:hover::before { opacity: 1; }
+
+.feature-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: rgba(37,99,235,0.12);
+  border: 1px solid rgba(37,99,235,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+.feature-icon svg { width: 20px; height: 20px; }
+
+.feature-card h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 10px;
+}
+.feature-card p {
+  font-size: 0.85rem;
+  color: var(--text-2);
+  line-height: 1.7;
+  font-weight: 300;
+}
+
+.fc-num {
+  position: absolute;
+  top: 20px;
+  right: 24px;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--text-3);
+  letter-spacing: 0.1em;
+}
+
+/* ─── PROCESS ───────────────────────────────────────────────────── */
+.process { padding: 80px 0 100px; }
+
+.process-track {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  position: relative;
+}
+
+/* connector line */
+.process-track::before {
+  content: '';
+  position: absolute;
+  top: 38px;
+  left: calc(100% / 6);
+  right: calc(100% / 6);
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--blue), rgba(201,168,76,0.6), var(--blue), transparent);
+  z-index: 0;
+}
+
+.process-step {
+  text-align: center;
+  padding: 0 24px;
+  position: relative;
+  z-index: 1;
+}
+
+.step-node {
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  margin: 0 auto 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg2);
+  border: 1px solid var(--border-b);
+  position: relative;
+  transition: all 0.3s ease;
+}
+.step-node::after {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  border: 1px solid transparent;
+  background: linear-gradient(135deg, var(--blue), var(--gold)) border-box;
+  -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: destination-out;
+  mask-composite: exclude;
+}
+.step-node:hover {
+  background: rgba(37,99,235,0.12);
+  box-shadow: 0 0 24px rgba(37,99,235,0.2);
+}
+
+.step-num {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--blue-lt);
+}
+
+.process-step h4 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+.process-step p {
+  font-size: 0.8rem;
+  color: var(--text-2);
+  line-height: 1.65;
+  font-weight: 300;
+}
+
+/* ─── DIVIDER ────────────────────────────────────────────────────── */
+.section-divider {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border-b), transparent);
+  margin: 0 auto;
+  max-width: 600px;
+}
+
+/* ─── FORM SECTION ──────────────────────────────────────────────── */
+.form-section { padding: 100px 0 120px; }
+
+.form-intro {
+  background: linear-gradient(135deg, rgba(37,99,235,0.08) 0%, rgba(201,168,76,0.04) 100%);
+  border: 1px solid rgba(37,99,235,0.15);
+  border-radius: var(--radius);
+  padding: 28px 32px;
+  margin-bottom: 48px;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+.form-intro-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  background: rgba(37,99,235,0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.form-intro h3 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+.form-intro p {
+  font-size: 0.82rem;
+  color: var(--text-2);
+  line-height: 1.6;
+  font-weight: 300;
+}
+
+/* form group card */
+.form-group-card {
+  background: var(--glass);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 36px 32px;
+  margin-bottom: 20px;
+  position: relative;
+  overflow: hidden;
+}
+.form-group-card::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: linear-gradient(180deg, var(--blue) 0%, var(--gold) 100%);
+  border-radius: 0 2px 2px 0;
+}
+
+.group-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 28px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
+.group-badge {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  background: rgba(201,168,76,0.1);
+  border: 1px solid rgba(201,168,76,0.2);
+  padding: 3px 10px;
+  border-radius: 4px;
+}
+.group-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+/* field grid */
+.field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+.field-row.full { grid-template-columns: 1fr; }
+.field-row.three { grid-template-columns: 1fr 1fr 1fr; }
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+label {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-2);
+}
+label .req {
+  color: var(--blue-lt);
+  margin-left: 2px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="url"],
+input[type="number"],
+select,
+textarea {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border-b);
+  border-radius: var(--radius-sm);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 400;
+  padding: 12px 16px;
+  width: 100%;
+  outline: none;
+  transition: all 0.2s ease;
+  -webkit-appearance: none;
+  appearance: none;
+}
+input::placeholder, textarea::placeholder { color: var(--text-3); }
+
+input:hover, select:hover, textarea:hover {
+  border-color: rgba(255,255,255,0.16);
+  background: rgba(255,255,255,0.055);
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: rgba(37,99,235,0.55);
+  background: rgba(37,99,235,0.05);
+  box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
+}
+
+input.error, select.error, textarea.error {
+  border-color: rgba(239,68,68,0.5);
+  background: rgba(239,68,68,0.04);
+  box-shadow: 0 0 0 3px rgba(239,68,68,0.08);
+}
+
+.field-err {
+  font-size: 0.72rem;
+  color: #F87171;
+  font-family: 'DM Mono', monospace;
+  display: none;
+  margin-top: 2px;
+}
+.field-err.show { display: block; }
+
+select {
+  background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L6 7L11 1' stroke='%234E5A6B' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 40px;
+  cursor: pointer;
+}
+select option { background: #111827; color: var(--text); }
+
+textarea {
+  resize: vertical;
+  min-height: 110px;
+  line-height: 1.6;
+}
+
+/* char counter */
+.char-hint {
+  font-size: 0.68rem;
+  color: var(--text-3);
+  font-family: 'DM Mono', monospace;
+  text-align: right;
+  margin-top: -2px;
+}
+
+/* checkboxes */
+.check-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.check-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+.check-item:hover {
+  border-color: rgba(37,99,235,0.35);
+  background: rgba(37,99,235,0.05);
+}
+.check-item input[type="checkbox"] { display: none; }
+.check-box {
+  width: 18px;
+  height: 18px;
+  border-radius: 5px;
+  border: 1px solid var(--text-3);
+  background: transparent;
+  flex-shrink: 0;
+  position: relative;
+  transition: all 0.2s ease;
+}
+.check-item input:checked ~ .check-box {
+  background: var(--blue);
+  border-color: var(--blue);
+}
+.check-item input:checked ~ .check-box::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 10px;
+  height: 6px;
+  border-left: 2px solid white;
+  border-bottom: 2px solid white;
+  transform: rotate(-45deg);
+}
+.check-label {
+  font-size: 0.85rem;
+  color: var(--text-2);
+  font-weight: 400;
+}
+.check-item input:checked ~ .check-box + .check-label,
+.check-item:has(input:checked) .check-label {
+  color: var(--text);
+}
+.check-item:has(input:checked) {
+  border-color: rgba(37,99,235,0.4);
+  background: rgba(37,99,235,0.06);
+}
+
+/* consent */
+.consent-wrap {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 20px 24px;
+  background: rgba(201,168,76,0.04);
+  border: 1px solid rgba(201,168,76,0.14);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+.consent-wrap input[type="checkbox"] { display: none; }
+.consent-box {
+  width: 20px;
+  height: 20px;
+  border-radius: 5px;
+  border: 1px solid rgba(201,168,76,0.4);
+  background: transparent;
+  flex-shrink: 0;
+  margin-top: 2px;
+  position: relative;
+  transition: all 0.2s ease;
+}
+.consent-wrap input:checked ~ .consent-box {
+  background: var(--gold);
+  border-color: var(--gold);
+}
+.consent-wrap input:checked ~ .consent-box::after {
+  content: '';
+  position: absolute;
+  top: 4px;
+  left: 3px;
+  width: 11px;
+  height: 6px;
+  border-left: 2px solid white;
+  border-bottom: 2px solid white;
+  transform: rotate(-45deg);
+}
+.consent-text {
+  font-size: 0.82rem;
+  color: var(--text-2);
+  line-height: 1.6;
+  font-weight: 300;
+}
+.consent-text strong { color: var(--text); font-weight: 500; }
+
+/* honeypot */
+.hp-field { position: absolute; left: -9999px; opacity: 0; pointer-events: none; }
+
+/* submit button */
+.submit-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-top: 32px;
+  flex-wrap: wrap;
+}
+
+.submit-note {
+  font-size: 0.78rem;
+  color: var(--text-3);
+  font-family: 'DM Mono', monospace;
+  max-width: 340px;
+  line-height: 1.55;
+}
+
+.btn-submit {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 40px;
+  background: linear-gradient(135deg, var(--blue) 0%, #1D4ED8 100%);
+  color: #fff;
+  font-family: 'Syne', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 100px;
+  cursor: pointer;
+  box-shadow: 0 4px 28px rgba(37,99,235,0.45), 0 1px 0 rgba(255,255,255,0.12) inset;
+  transition: all 0.25s ease;
+  letter-spacing: 0.01em;
+  position: relative;
+  overflow: hidden;
+}
+.btn-submit::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, transparent 60%);
+}
+.btn-submit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 36px rgba(37,99,235,0.6), 0 1px 0 rgba(255,255,255,0.14) inset;
+}
+.btn-submit:active { transform: translateY(0); }
+.btn-submit:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* loading spinner */
+.spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255,255,255,0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  display: none;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.btn-submit.loading .btn-text { opacity: 0.6; }
+.btn-submit.loading .spinner { display: block; }
+
+/* success state */
+.success-card {
+  display: none;
+  background: linear-gradient(135deg, rgba(16,185,129,0.08) 0%, rgba(37,99,235,0.05) 100%);
+  border: 1px solid rgba(16,185,129,0.2);
+  border-radius: var(--radius);
+  padding: 56px 40px;
+  text-align: center;
+  margin-top: 40px;
+}
+.success-card.show { display: block; animation: fadeUp 0.5s ease; }
+.success-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: rgba(16,185,129,0.12);
+  border: 1px solid rgba(16,185,129,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 24px;
+}
+.success-card h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 10px;
+}
+.success-card p {
+  font-size: 0.9rem;
+  color: var(--text-2);
+  max-width: 380px;
+  margin: 0 auto;
+  font-weight: 300;
+  line-height: 1.7;
+}
+.success-id {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.75rem;
+  color: #10B981;
+  margin-top: 18px;
+  letter-spacing: 0.06em;
+}
+
+/* ─── FOOTER ────────────────────────────────────────────────────── */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 36px 24px;
+  text-align: center;
+}
+.footer-logo {
+  height: 36px;
+  opacity: 0.6;
+  margin-bottom: 12px;
+}
+footer p {
+  font-size: 0.78rem;
+  color: var(--text-3);
+  font-family: 'DM Mono', monospace;
+}
+
+/* ─── ANIMATIONS ─────────────────────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.fade-up {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ─── RESPONSIVE ─────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .features-grid { grid-template-columns: 1fr; }
+  .field-row { grid-template-columns: 1fr; }
+  .field-row.three { grid-template-columns: 1fr; }
+  .check-grid { grid-template-columns: 1fr; }
+  .submit-wrap { flex-direction: column; align-items: flex-start; }
+  .submit-note { max-width: 100%; }
+  .btn-submit { width: 100%; justify-content: center; }
+  .form-group-card { padding: 28px 20px; }
+  .stats-strip { flex-direction: column; }
+  .stat-item { border-right: none; border-bottom: 1px solid var(--border); }
+  .stat-item:last-child { border-bottom: none; }
+
+  .process-track {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .process-track::before { display: none; }
+
+  .hero { padding: 60px 20px 80px; }
+  .hero-cta { flex-direction: column; align-items: center; }
+}
+
+@media (max-width: 480px) {
+  .form-intro { flex-direction: column; }
+  .group-header { flex-wrap: wrap; }
+}
+</style>
 </head>
+
 <body>
-  <div class="wrap">
-    <section class="hero">
-      <div class="panel hero-copy">
-        <div class="eyebrow">IEEE UNIBEN Student Branch × UNIBEN</div>
-        <h1>Project & Talent Pipeline</h1>
-        <p class="lead">
-          Submit a serious project, prototype, or technical idea. Strong submissions can be shortlisted for visibility, mentorship, collaboration, and alumni attention.
-        </p>
 
-        <div class="hero-grid">
-          <div class="stat">
-            <strong>Built for real output</strong>
-            <span>Projects, prototypes, and technical work that can be reviewed and showcased.</span>
-          </div>
-          <div class="stat">
-            <strong>Selective by design</strong>
-            <span>Low-effort entries are filtered out. Quality gets visibility.</span>
-          </div>
-          <div class="stat">
-            <strong>Bridge to alumni</strong>
-            <span>Use the platform to connect good work with people who can open doors.</span>
-          </div>
-        </div>
-      </div>
+<!-- hidden iframe for form post -->
+<iframe name="submit-iframe" id="submit-iframe" style="display:none"></iframe>
 
-      <div class="panel logos">
-        <div class="logo-card">
-          <img src="https://res.cloudinary.com/dc2gwj09q/image/upload/v1775458953/1003291447_884e7f98bc5c65bac74ba75d9c0ab22e-3_2_2026_8_40_50_AM_1_ha7b5r.png" alt="UNIBEN logo">
-          <div>
-            <h3>University of Benin</h3>
-            <p>Institutional identity for the pipeline.</p>
-          </div>
-        </div>
-        <div class="logo-card">
-          <img src="https://res.cloudinary.com/dc2gwj09q/image/upload/v1775459267/images__1_-removebg-preview_b40apw.png" alt="IEEE UNIBEN logo">
-          <div>
-            <h3>IEEE UNIBEN Student Branch</h3>
-            <p>Technical visibility, selection, and community value.</p>
-          </div>
-        </div>
-      </div>
-    </section>
+<!-- ══════════════ HERO ══════════════ -->
+<section class="hero">
+  <div class="hero-grid"></div>
 
-    <section class="section-note">
-      <div class="note">
-        <div class="tag">Step 1</div>
-        <h4>Submit the idea</h4>
-        <p>Fill the form with a clean project description, proof, and what support is needed.</p>
-      </div>
-      <div class="note">
-        <div class="tag">Step 2</div>
-        <h4>Review and shortlist</h4>
-        <p>Entries are screened for clarity, seriousness, feasibility, and evidence of execution.</p>
-      </div>
-      <div class="note">
-        <div class="tag">Step 3</div>
-        <h4>Showcase the best work</h4>
-        <p>Strong submissions get spotlighted so students and alumni can see the talent.</p>
-      </div>
-    </section>
-
-    <section class="panel form-shell">
-      <div class="form-head">
-        <div>
-          <h2>Submit your project</h2>
-          <p>
-            For large documents, upload them to Google Drive and paste the share link in the Drive Link field.
-            That is the stable way to handle files from GitHub Pages.
-          </p>
-        </div>
-        <div class="deadline">Call for projects is open</div>
-      </div>
-
-      <div id="statusBox" class="status"></div>
-
-      <form id="projectForm" action="PASTE_YOUR_WEB_APP_URL_HERE" method="POST" target="hidden_iframe" accept-charset="UTF-8">
-        <div class="group">
-          <h3>Personal information</h3>
-          <p>Use real details. Weak identity data weakens the whole system.</p>
-          <div class="grid-2">
-            <div class="field">
-              <label for="fullName">Full name <span class="req">*</span></label>
-              <input id="fullName" name="fullName" type="text" placeholder="E.g. Ebosetale Isesele" required />
-            </div>
-            <div class="field">
-              <label for="email">Email <span class="req">*</span></label>
-              <input id="email" name="email" type="email" placeholder="yourname@example.com" required />
-            </div>
-            <div class="field">
-              <label for="phone">Phone / WhatsApp</label>
-              <input id="phone" name="phone" type="tel" placeholder="+234..." />
-            </div>
-            <div class="field">
-              <label for="department">Department <span class="req">*</span></label>
-              <select id="department" name="department" required>
-                <option value="">Select department</option>
-                <option>Electrical and Electronics Engineering</option>
-                <option>Computer Engineering</option>
-                <option>Mechanical Engineering</option>
-                <option>Civil Engineering</option>
-                <option>Mechatronics Engineering</option>
-                <option>Biomedical Engineering</option>
-                <option>Other</option>
-              </select>
-            </div>
-            <div class="field">
-              <label for="level">Level <span class="req">*</span></label>
-              <select id="level" name="level" required>
-                <option value="">Select level</option>
-                <option>100</option>
-                <option>200</option>
-                <option>300</option>
-                <option>400</option>
-                <option>500</option>
-                <option>Other</option>
-              </select>
-            </div>
-            <div class="field">
-              <label for="submissionType">Submission type <span class="req">*</span></label>
-              <select id="submissionType" name="submissionType" required>
-                <option value="">Select type</option>
-                <option>Individual idea</option>
-                <option>Team project</option>
-                <option>Prototype</option>
-                <option>Final year project</option>
-                <option>Research / technical concept</option>
-              </select>
-            </div>
-          </div>
-        </div>
-
-        <div class="group">
-          <h3>Project information</h3>
-          <p>This is the core of the form. Make it specific.</p>
-          <div class="grid-2">
-            <div class="field">
-              <label for="projectTitle">Project title <span class="req">*</span></label>
-              <input id="projectTitle" name="projectTitle" type="text" placeholder="E.g. Smart Energy Monitoring System" required />
-            </div>
-            <div class="field">
-              <label for="projectCategory">Project category <span class="req">*</span></label>
-              <select id="projectCategory" name="projectCategory" required>
-                <option value="">Select category</option>
-                <option>Embedded Systems</option>
-                <option>Power and Energy</option>
-                <option>Control Systems</option>
-                <option>Communications</option>
-                <option>Instrumentation</option>
-                <option>Robotics</option>
-                <option>Software / Web</option>
-                <option>AI / Data</option>
-                <option>Other</option>
-              </select>
-            </div>
-            <div class="field">
-              <label for="projectStage">Project stage <span class="req">*</span></label>
-              <select id="projectStage" name="projectStage" required>
-                <option value="">Select stage</option>
-                <option>Idea only</option>
-                <option>In progress</option>
-                <option>Prototype complete</option>
-                <option>Testing / debugging</option>
-                <option>Completed</option>
-              </select>
-            </div>
-            <div class="field">
-              <label for="weeklyHours">Hours per week you can commit <span class="req">*</span></label>
-              <select id="weeklyHours" name="weeklyHours" required>
-                <option value="">Select commitment</option>
-                <option>1–2</option>
-                <option>3–5</option>
-                <option>6–10</option>
-                <option>10+</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="grid-2" style="margin-top:16px">
-            <div class="field">
-              <label for="problemStatement">Problem statement <span class="req">*</span></label>
-              <textarea id="problemStatement" name="problemStatement" placeholder="What problem are you solving? Why does it matter?" required minlength="60"></textarea>
-            </div>
-            <div class="field">
-              <label for="proposedSolution">Proposed solution <span class="req">*</span></label>
-              <textarea id="proposedSolution" name="proposedSolution" placeholder="Explain your approach, design, or concept." required minlength="60"></textarea>
-            </div>
-          </div>
-
-          <div class="field" style="margin-top:16px">
-            <label for="currentStatus">Current status <span class="req">*</span></label>
-            <textarea id="currentStatus" name="currentStatus" placeholder="What is already done? What is left?" required minlength="40"></textarea>
-          </div>
-        </div>
-
-        <div class="group">
-          <h3>Evidence and visibility</h3>
-          <p>Proof is what turns a claim into trust.</p>
-          <div class="grid-2">
-            <div class="field">
-              <label for="portfolioLink">Portfolio / GitHub / LinkedIn link <span class="req">*</span></label>
-              <input id="portfolioLink" name="portfolioLink" type="url" placeholder="https://..." required />
-            </div>
-            <div class="field">
-              <label for="demoLink">Demo video / presentation link</label>
-              <input id="demoLink" name="demoLink" type="url" placeholder="YouTube, Drive, or similar" />
-            </div>
-            <div class="field">
-              <label for="driveLink">Google Drive folder / file link</label>
-              <input id="driveLink" name="driveLink" type="url" placeholder="Upload documents to Drive and paste link here" />
-            </div>
-            <div class="field">
-              <label for="lecturerRecommendation">Lecturer recommendation</label>
-              <input id="lecturerRecommendation" name="lecturerRecommendation" type="text" placeholder="Name or reference of lecturer" />
-            </div>
-          </div>
-        </div>
-
-        <div class="group">
-          <h3>What do you need?</h3>
-          <p>Select all that apply.</p>
-          <div class="checks">
-            <label class="check"><input type="checkbox" name="needs" value="Team members"><span>Team members</span></label>
-            <label class="check"><input type="checkbox" name="needs" value="Technical guidance"><span>Technical guidance</span></label>
-            <label class="check"><input type="checkbox" name="needs" value="Mentorship"><span>Mentorship</span></label>
-            <label class="check"><input type="checkbox" name="needs" value="Visibility / showcase"><span>Visibility / showcase</span></label>
-            <label class="check"><input type="checkbox" name="needs" value="Review / feedback"><span>Review / feedback</span></label>
-            <label class="check"><input type="checkbox" name="needs" value="Funding / sponsorship"><span>Funding / sponsorship</span></label>
-          </div>
-        </div>
-
-        <div class="group">
-          <h3>Additional context</h3>
-          <p>Use this section to show seriousness.</p>
-          <div class="grid-2">
-            <div class="field">
-              <label for="skills">Relevant skills</label>
-              <input id="skills" name="skills" type="text" placeholder="E.g. PCB design, Arduino, MATLAB, C++, data analysis" />
-            </div>
-            <div class="field">
-              <label for="previousProjects">Completed projects / execution history</label>
-              <input id="previousProjects" name="previousProjects" type="text" placeholder="List one or two finished works" />
-            </div>
-          </div>
-
-          <div class="field" style="margin-top:16px">
-            <label for="whySelected">Why should this project be selected? <span class="req">*</span></label>
-            <textarea id="whySelected" name="whySelected" placeholder="Convince the review team in a direct, honest way." required minlength="60"></textarea>
-          </div>
-        </div>
-
-        <div class="group">
-          <h3>Final check</h3>
-          <p>Confirm that your submission is honest and complete.</p>
-          <label class="check" style="margin-bottom:0">
-            <input id="consent" name="consent" type="checkbox" value="Yes" required />
-            <span>I confirm that the information I submitted is accurate and I agree to be contacted about this project.</span>
-          </label>
-
-          <div class="hp">
-            <label>Website
-              <input type="text" name="website" tabindex="-1" autocomplete="off" />
-            </label>
-          </div>
-        </div>
-
-        <div class="actions">
-          <button class="btn" id="submitBtn" type="submit">Submit Project</button>
-          <div class="fineprint">
-            By submitting, you are entering a review pipeline. Not every submission will be selected. Strong work gets visibility.
-          </div>
-        </div>
-      </form>
-    </section>
+  <div class="logo-wrap">
+    <img class="logo-img" 
+         src="https://res.cloudinary.com/dc2gwj09q/image/upload/v1775459267/images__1_-removebg-preview_b40apw.png" 
+         alt="IEEE UNIBEN Student Branch">
   </div>
 
-  <iframe name="hidden_iframe" id="hidden_iframe"></iframe>
+  <div class="eyebrow">IEEE UNIBEN Student Branch</div>
 
-  <script>
-    const form = document.getElementById('projectForm');
-    const statusBox = document.getElementById('statusBox');
-    const submitBtn = document.getElementById('submitBtn');
-    const iframe = document.getElementById('hidden_iframe');
+  <h1 class="hero-title">
+    Call for <span>Projects and Papers</span>
+  </h1>
 
-    let submitted = false;
-    let iframeReady = false;
+  <p class="hero-sub">
+    Technical ideas, prototypes, and projects — reviewed for quality, supported for impact
+  </p>
 
-    function showStatus(message, isError = false) {
-      statusBox.className = isError ? 'status error' : 'status';
-      statusBox.style.display = 'block';
-      statusBox.textContent = message;
-      statusBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
+  <p class="hero-desc">
+    Not every submission gets through. We review for technical depth, engineering merit,
+    and real potential for output. If your work is solid — this is where it gets seen, supported, and taken further.
+  </p>
 
-    function isValidName(name) {
-      return /^[A-Za-z]+(?:[ '-][A-Za-z]+)*$/.test(name.trim());
-    }
+  <div class="hero-cta">
+    <a href="#submit" class="btn-primary">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 5v14M5 12l7 7 7-7"/>
+      </svg>
+      Submit Your Project
+    </a>
+    <a href="#process" class="btn-ghost">See how it works</a>
+  </div>
 
-    function isValidUrl(value) {
-      if (!value) return true;
-      try {
-        new URL(value);
-        return true;
-      } catch {
-        return false;
+  <div class="stats-strip fade-up" style="width:100%;max-width:600px;">
+    <div class="stat-item">
+      <span class="stat-num">IEEE</span>
+      <span class="stat-lbl">Backed Network</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">UNIBEN</span>
+      <span class="stat-lbl">Engineering Faculty</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">Real</span>
+      <span class="stat-lbl">Output Focused</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">FYP</span>
+      <span class="stat-lbl">Projects Welcome</span>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ FEATURES ══════════════ -->
+<section class="features" id="features">
+  <div class="container">
+    <div class="section-head fade-up">
+      <span class="section-label">Why it matters</span>
+      <h2 class="section-title">More than a submission form</h2>
+      <p class="section-body">IEEE UNIBEN reviews your work, connects you with the right people, and helps strong projects go further than a shelf and a grade.</p>
+    </div>
+
+    <div class="features-grid">
+
+      <div class="feature-card fade-up">
+        <span class="fc-num">01</span>
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#3B82F6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+          </svg>
+        </div>
+        <h3>Built for real output</h3>
+        <p>Every submission is reviewed against engineering standards. No participation awards. Projects that demonstrate actual depth get visibility — events, publications, and technical showcases.</p>
+      </div>
+
+      <div class="feature-card fade-up" style="transition-delay:0.1s">
+        <span class="fc-num">02</span>
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#3B82F6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+          </svg>
+        </div>
+        <h3>Selective by design</h3>
+        <p>The pipeline is deliberately selective. We review for technical credibility, problem clarity, and potential. If you make it through, it means something — to you, to recruiters, to the field.</p>
+      </div>
+
+      <div class="feature-card fade-up" style="transition-delay:0.2s">
+        <span class="fc-num">03</span>
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#3B82F6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <polyline points="14 2 14 8 20 8"/>
+            <line x1="16" y1="13" x2="8" y2="13"/>
+            <line x1="16" y1="17" x2="8" y2="17"/>
+            <polyline points="10 9 9 9 8 9"/>
+          </svg>
+        </div>
+        <h3>Final year? This is for you.</h3>
+        <p>Your FYP deserves more than a grade. IEEE UNIBEN can support you with journal submissions, co-authored research papers, and technical documentation that gives your work a life beyond graduation.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ PROCESS ══════════════ -->
+<section class="process" id="process">
+  <div class="container">
+    <div class="section-head fade-up">
+      <span class="section-label">How it works</span>
+      <h2 class="section-title">Three steps. No ambiguity.</h2>
+      <p class="section-body">Submit, get reviewed, get visible. The process is deliberate and fast.</p>
+    </div>
+
+    <div class="process-track">
+
+      <div class="process-step fade-up">
+        <div class="step-node"><span class="step-num">01</span></div>
+        <h4>Submit Your Idea</h4>
+        <p>Fill the pipeline form completely. Include problem statement, proposed solution, stage, links, and what you need. Incomplete entries are deprioritised.</p>
+      </div>
+
+      <div class="process-step fade-up" style="transition-delay:0.15s">
+        <div class="step-node"><span class="step-num">02</span></div>
+        <h4>Review &amp; Shortlist</h4>
+        <p>IEEE UNIBEN leadership reviews submissions against technical merit, feasibility, and impact potential. Shortlisted founders are contacted directly.</p>
+      </div>
+
+      <div class="process-step fade-up" style="transition-delay:0.3s">
+        <div class="step-node"><span class="step-num">03</span></div>
+        <h4>Showcase Top Projects</h4>
+        <p>Selected work is featured at IEEE events, published in The Betelgeuse Beacon, and supported for journal submission and research dissemination — especially for final year projects.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="container"><div class="section-divider"></div></div>
+
+<!-- ══════════════ FORM ══════════════ -->
+<section class="form-section" id="submit">
+  <div class="container">
+
+    <div class="section-head fade-up">
+      <span class="section-label">Application</span>
+      <h2 class="section-title">Submit your project</h2>
+      <p class="section-body">Fields marked <span style="color:var(--blue-lt)">*</span> are required. Be specific — vague submissions receive lower review priority.</p>
+    </div>
+
+    <!-- notification bar -->
+    <div class="form-intro fade-up">
+      <div class="form-intro-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#3B82F6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+        </svg>
+      </div>
+      <div>
+        <h3>Before you submit</h3>
+        <p>This form goes directly to IEEE UNIBEN leadership for review. You will receive an automatic email confirmation with a unique submission ID. <strong style="color:var(--gold-lt)">Final year students are especially encouraged to submit</strong> — IEEE can assist with publication support, research documentation, and getting your work formally recognised beyond the department.</p>
+      </div>
+    </div>
+
+    <!-- form -->
+    <form id="pipeline-form"
+          action="https://script.google.com/macros/s/AKfycbwW-ojVHPUu1skdlTL3E1ci3MaK5Yd0zp89rZlutP_qPjftC1khcJA60Zlh0M97xDnt0w/exec"
+          method="POST"
+          target="submit-iframe"
+          novalidate>
+
+      <!-- honeypot -->
+      <div class="hp-field" aria-hidden="true">
+        <input type="text" name="website" id="website" tabindex="-1" autocomplete="off">
+      </div>
+
+      <!-- ── SECTION A: Personal Info ── -->
+      <div class="form-group-card fade-up">
+        <div class="group-header">
+          <span class="group-badge">Section A</span>
+          <span class="group-title">Personal Information</span>
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label for="fullName">Full Name <span class="req">*</span></label>
+            <input type="text" id="fullName" name="fullName" placeholder="Your legal name" autocomplete="name">
+            <span class="field-err" id="err-fullName">Please enter your full name.</span>
+          </div>
+          <div class="field">
+            <label for="email">Email Address <span class="req">*</span></label>
+            <input type="email" id="email" name="email" placeholder="you@example.com" autocomplete="email">
+            <span class="field-err" id="err-email">Enter a valid email address.</span>
+          </div>
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" placeholder="+234 800 000 0000" autocomplete="tel">
+          </div>
+          <div class="field">
+            <label for="department">Department <span class="req">*</span></label>
+            <select id="department" name="department">
+              <option value="" disabled selected>Select department</option>
+              <option>Electrical &amp; Electronics Engineering</option>
+              <option>Computer Engineering</option>
+              <option>Mechanical Engineering</option>
+              <option>Civil Engineering</option>
+              <option>Chemical Engineering</option>
+              <option>Petroleum Engineering</option>
+              <option>Computer Science</option>
+              <option>Physics</option>
+              <option>Mathematics</option>
+              <option>Other</option>
+            </select>
+            <span class="field-err" id="err-department">Please select your department.</span>
+          </div>
+        </div>
+
+        <div class="field-row full">
+          <div class="field">
+            <label for="level">Academic Level <span class="req">*</span></label>
+            <select id="level" name="level">
+              <option value="" disabled selected>Select level</option>
+              <option>100 Level</option>
+              <option>200 Level</option>
+              <option>300 Level</option>
+              <option>400 Level</option>
+              <option>500 Level</option>
+              <option>Postgraduate</option>
+            </select>
+            <span class="field-err" id="err-level">Please select your level.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── SECTION B: Project Info ── -->
+      <div class="form-group-card fade-up">
+        <div class="group-header">
+          <span class="group-badge">Section B</span>
+          <span class="group-title">Project Information</span>
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label for="projectTitle">Project Title <span class="req">*</span></label>
+            <input type="text" id="projectTitle" name="projectTitle" placeholder="What is the project called?">
+            <span class="field-err" id="err-projectTitle">Please enter a project title.</span>
+          </div>
+          <div class="field">
+            <label for="submissionType">Submission Type <span class="req">*</span></label>
+            <select id="submissionType" name="submissionType">
+              <option value="" disabled selected>Select type</option>
+              <option>New Project / Idea</option>
+              <option>Prototype / MVP</option>
+              <option>Research Work</option>
+              <option>Team Looking for Members</option>
+              <option>Skill Offer / Availability</option>
+            </select>
+            <span class="field-err" id="err-submissionType">Please select a submission type.</span>
+          </div>
+        </div>
+
+        <div class="field-row three">
+          <div class="field">
+            <label for="projectCategory">Category <span class="req">*</span></label>
+            <select id="projectCategory" name="projectCategory">
+              <option value="" disabled selected>Select category</option>
+              <option>Embedded Systems &amp; IoT</option>
+              <option>Web Development</option>
+              <option>Artificial Intelligence / ML</option>
+              <option>Renewable Energy</option>
+              <option>Robotics &amp; Automation</option>
+              <option>Data Science</option>
+              <option>Telecommunications</option>
+              <option>Biomedical Engineering</option>
+              <option>Power Systems</option>
+              <option>Other</option>
+            </select>
+            <span class="field-err" id="err-projectCategory">Please select a category.</span>
+          </div>
+          <div class="field">
+            <label for="projectStage">Project Stage <span class="req">*</span></label>
+            <select id="projectStage" name="projectStage">
+              <option value="" disabled selected>Select stage</option>
+              <option>Idea / Concept</option>
+              <option>Research Phase</option>
+              <option>Prototype / MVP</option>
+              <option>Testing &amp; Iteration</option>
+              <option>Near Completion</option>
+            </select>
+            <span class="field-err" id="err-projectStage">Please select a stage.</span>
+          </div>
+          <div class="field">
+            <label for="weeklyHours">Weekly Commitment <span class="req">*</span></label>
+            <select id="weeklyHours" name="weeklyHours">
+              <option value="" disabled selected>Hours per week</option>
+              <option>1–5 hours</option>
+              <option>5–10 hours</option>
+              <option>10–20 hours</option>
+              <option>20+ hours</option>
+            </select>
+            <span class="field-err" id="err-weeklyHours">Please select commitment level.</span>
+          </div>
+        </div>
+
+        <div class="field-row full" style="margin-bottom:16px">
+          <div class="field">
+            <label for="problemStatement">Problem Statement <span class="req">*</span></label>
+            <textarea id="problemStatement" name="problemStatement" placeholder="What specific problem does this project address? Be concrete — what breaks, fails, or goes unserved? (min. 80 characters)" rows="5"></textarea>
+            <div class="char-hint" id="cnt-problemStatement">0 / 80 min</div>
+            <span class="field-err" id="err-problemStatement">Please describe the problem in at least 80 characters.</span>
+          </div>
+        </div>
+
+        <div class="field-row full" style="margin-bottom:16px">
+          <div class="field">
+            <label for="proposedSolution">Proposed Solution <span class="req">*</span></label>
+            <textarea id="proposedSolution" name="proposedSolution" placeholder="How does your project solve the problem? Describe your approach, method, or technology stack. (min. 80 characters)" rows="5"></textarea>
+            <div class="char-hint" id="cnt-proposedSolution">0 / 80 min</div>
+            <span class="field-err" id="err-proposedSolution">Please describe your solution in at least 80 characters.</span>
+          </div>
+        </div>
+
+        <div class="field-row full">
+          <div class="field">
+            <label for="currentStatus">Current Status</label>
+            <textarea id="currentStatus" name="currentStatus" placeholder="What progress has been made so far? What exists, what works, what doesn't?" rows="4"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── SECTION C: Links ── -->
+      <div class="form-group-card fade-up">
+        <div class="group-header">
+          <span class="group-badge">Section C</span>
+          <span class="group-title">Proof &amp; Links</span>
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label for="portfolioLink">Portfolio / GitHub URL</label>
+            <input type="url" id="portfolioLink" name="portfolioLink" placeholder="https://github.com/yourusername">
+            <span class="field-err" id="err-portfolioLink">Enter a valid URL (must start with https://).</span>
+          </div>
+          <div class="field">
+            <label for="demoLink">Demo / Live Link</label>
+            <input type="url" id="demoLink" name="demoLink" placeholder="https://yourproject.demo">
+            <span class="field-err" id="err-demoLink">Enter a valid URL (must start with https://).</span>
+          </div>
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label for="driveLink">Google Drive / Docs Link</label>
+            <input type="url" id="driveLink" name="driveLink" placeholder="https://drive.google.com/...">
+            <span class="field-err" id="err-driveLink">Enter a valid URL (must start with https://).</span>
+          </div>
+          <div class="field">
+            <label for="lecturerRecommendation">Lecturer / Supervisor</label>
+            <input type="text" id="lecturerRecommendation" name="lecturerRecommendation" placeholder="Name and department (optional)">
+          </div>
+        </div>
+      </div>
+
+      <!-- ── SECTION D: Needs ── -->
+      <div class="form-group-card fade-up">
+        <div class="group-header">
+          <span class="group-badge">Section D</span>
+          <span class="group-title">What do you need?</span>
+        </div>
+
+        <p style="font-size:0.82rem;color:var(--text-2);margin-bottom:18px;font-weight:300;">Select all that apply. This helps us connect you with the right resources.</p>
+
+        <div class="check-grid">
+          <label class="check-item">
+            <input type="checkbox" name="needs" value="Team Members">
+            <span class="check-box"></span>
+            <span class="check-label">Team Members</span>
+          </label>
+          <label class="check-item">
+            <input type="checkbox" name="needs" value="Mentorship">
+            <span class="check-box"></span>
+            <span class="check-label">Mentorship</span>
+          </label>
+          <label class="check-item">
+            <input type="checkbox" name="needs" value="Funding">
+            <span class="check-box"></span>
+            <span class="check-label">Funding</span>
+          </label>
+          <label class="check-item">
+            <input type="checkbox" name="needs" value="Exposure / Visibility">
+            <span class="check-box"></span>
+            <span class="check-label">Exposure / Visibility</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- ── SECTION E: Additional Info ── -->
+      <div class="form-group-card fade-up">
+        <div class="group-header">
+          <span class="group-badge">Section E</span>
+          <span class="group-title">Additional Information</span>
+        </div>
+
+        <div class="field-row full" style="margin-bottom:16px">
+          <div class="field">
+            <label for="skills">Relevant Skills</label>
+            <input type="text" id="skills" name="skills" placeholder="e.g. C++, ESP32, PCB design, React, Python, FreeRTOS">
+          </div>
+        </div>
+
+        <div class="field-row full" style="margin-bottom:16px">
+          <div class="field">
+            <label for="previousProjects">Previous Projects</label>
+            <textarea id="previousProjects" name="previousProjects" placeholder="List any past technical work, competitions, or builds. Links welcome." rows="3"></textarea>
+          </div>
+        </div>
+
+        <div class="field-row full">
+          <div class="field">
+            <label for="whySelected">Why should this project be selected? <span class="req">*</span></label>
+            <textarea id="whySelected" name="whySelected" placeholder="Make the case for your project. What is the unique merit, the untapped potential, or the outcome that sets it apart? (min. 60 characters)" rows="5"></textarea>
+            <div class="char-hint" id="cnt-whySelected">0 / 60 min</div>
+            <span class="field-err" id="err-whySelected">Please write at least 60 characters explaining your project's merit.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── SECTION F: Consent ── -->
+      <div class="form-group-card fade-up">
+        <div class="group-header">
+          <span class="group-badge">Section F</span>
+          <span class="group-title">Final Confirmation</span>
+        </div>
+
+        <label class="consent-wrap" for="consentCheck">
+          <input type="checkbox" id="consentCheck" name="consent" value="agreed">
+          <span class="consent-box"></span>
+          <span class="consent-text">
+            I confirm that <strong>the information provided is accurate</strong> and that this work is my own or that I have the rights to submit it. I understand that IEEE UNIBEN Student Branch may contact me regarding this submission and may feature this project in affiliated publications, events, or platforms.
+          </span>
+        </label>
+        <span class="field-err" id="err-consent" style="margin-top:10px;display:none">You must confirm accuracy before submitting.</span>
+      </div>
+
+      <!-- submit -->
+      <div class="submit-wrap fade-up">
+        <p class="submit-note">
+          Submissions are reviewed manually.<br>
+          You'll receive a confirmation email with a unique Submission ID within minutes.
+        </p>
+        <button type="submit" class="btn-submit" id="submit-btn">
+          <div class="spinner"></div>
+          <span class="btn-text">Submit for Review</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="arrow-icon">
+            <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+          </svg>
+        </button>
+      </div>
+
+    </form><!-- /pipeline-form -->
+
+    <!-- success card (shown after submission) -->
+    <div class="success-card" id="success-card">
+      <div class="success-icon">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="20 6 9 17 4 12"/>
+        </svg>
+      </div>
+      <h3>Submission received.</h3>
+      <p>Your project has entered the IEEE UNIBEN pipeline. Check your inbox for a confirmation email with your unique submission ID. Strong entries will be contacted within 14 days.</p>
+      <p class="success-id">Keep building. The work speaks first.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════ FOOTER ══════════════ -->
+<footer>
+  <div class="container">
+    <img class="footer-logo"
+         src="https://res.cloudinary.com/dc2gwj09q/image/upload/v1775459267/images__1_-removebg-preview_b40apw.png"
+         alt="IEEE UNIBEN">
+    <p>IEEE UNIBEN Student Branch · University of Benin</p>
+    <p style="margin-top:6px;color:var(--text-3)">Engineering Submissions · Open to all students.</p>
+  </div>
+</footer>
+
+<script>
+/* ─── INTERSECTION OBSERVER: fade-up ─── */
+(function(){
+  const els = document.querySelectorAll('.fade-up');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        io.unobserve(e.target);
       }
-    }
-
-    function validate() {
-      const fullName = document.getElementById('fullName').value.trim();
-      const email = document.getElementById('email').value.trim();
-      const problemStatement = document.getElementById('problemStatement').value.trim();
-      const proposedSolution = document.getElementById('proposedSolution').value.trim();
-      const currentStatus = document.getElementById('currentStatus').value.trim();
-      const portfolioLink = document.getElementById('portfolioLink').value.trim();
-      const demoLink = document.getElementById('demoLink').value.trim();
-      const driveLink = document.getElementById('driveLink').value.trim();
-      const whySelected = document.getElementById('whySelected').value.trim();
-      const consent = document.getElementById('consent').checked;
-      const honeypot = document.querySelector('input[name="website"]').value.trim();
-
-      if (honeypot) {
-        showStatus('Submission blocked.', true);
-        return false;
-      }
-
-      if (!isValidName(fullName)) {
-        showStatus('Enter a proper full name. Do not put numbers or symbols in the name field.', true);
-        return false;
-      }
-
-      if (!email || !document.getElementById('email').checkValidity()) {
-        showStatus('Enter a valid email address.', true);
-        return false;
-      }
-
-      if (problemStatement.length < 60 || proposedSolution.length < 60 || currentStatus.length < 40 || whySelected.length < 60) {
-        showStatus('Your project description is too thin. Add real detail.', true);
-        return false;
-      }
-
-      if (!isValidUrl(portfolioLink) || !isValidUrl(demoLink) || !isValidUrl(driveLink)) {
-        showStatus('One of your links is not a valid URL.', true);
-        return false;
-      }
-
-      if (!consent) {
-        showStatus('You must confirm that your submission is accurate.', true);
-        return false;
-      }
-
-      return true;
-    }
-
-    form.addEventListener('submit', function () {
-      if (!validate()) {
-        event.preventDefault();
-        return;
-      }
-
-      submitted = true;
-      submitBtn.disabled = true;
-      submitBtn.textContent = 'Submitting...';
-      showStatus('Submitting your project. Do not close the page.', false);
     });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  els.forEach(el => io.observe(el));
+})();
 
-    iframe.addEventListener('load', function () {
-      if (!iframeReady) {
-        iframeReady = true;
-        return;
-      }
+/* ─── CHAR COUNTERS ─── */
+(function(){
+  const fields = [
+    { id: 'problemStatement',  min: 80,  cntId: 'cnt-problemStatement' },
+    { id: 'proposedSolution',  min: 80,  cntId: 'cnt-proposedSolution' },
+    { id: 'whySelected',       min: 60,  cntId: 'cnt-whySelected' }
+  ];
 
-      if (submitted) {
-        submitted = false;
-        submitBtn.disabled = false;
-        submitBtn.textContent = 'Submit Project';
-        form.reset();
-        showStatus('Submission received. Your project has entered the review pipeline.', false);
-      }
+  fields.forEach(({id, min, cntId}) => {
+    const el  = document.getElementById(id);
+    const cnt = document.getElementById(cntId);
+    if (!el || !cnt) return;
+    el.addEventListener('input', () => {
+      const len = el.value.length;
+      cnt.textContent = `${len} / ${min} min`;
+      cnt.style.color = len >= min ? '#10B981' : 'var(--text-3)';
     });
-  </script>
+  });
+})();
+
+/* ─── FORM VALIDATION ─── */
+function showErr(id, msg) {
+  const el = document.getElementById(id);
+  const err = document.getElementById('err-' + id);
+  if (el) el.classList.add('error');
+  if (err) { err.textContent = msg || err.textContent; err.classList.add('show'); }
+}
+function clearErr(id) {
+  const el = document.getElementById(id);
+  const err = document.getElementById('err-' + id);
+  if (el) el.classList.remove('error');
+  if (err) err.classList.remove('show');
+}
+
+function isValidUrl(s) {
+  if (!s) return true;
+  try { const u = new URL(s); return u.protocol === 'https:' || u.protocol === 'http:'; }
+  catch { return false; }
+}
+function isValidEmail(s) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(s); }
+
+// live clearing
+['fullName','email','department','level','projectTitle','submissionType',
+ 'projectCategory','projectStage','weeklyHours','problemStatement',
+ 'proposedSolution','whySelected','portfolioLink','demoLink','driveLink']
+  .forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener('input', () => clearErr(id));
+    if (el) el.addEventListener('change', () => clearErr(id));
+  });
+
+document.getElementById('consentCheck').addEventListener('change', () => {
+  document.getElementById('err-consent').style.display = 'none';
+});
+
+function validate() {
+  let ok = true;
+
+  // required text fields
+  [
+    ['fullName',       'Please enter your full name.'],
+    ['email',          'Please enter a valid email address.'],
+    ['projectTitle',   'Please enter a project title.'],
+  ].forEach(([id, msg]) => {
+    const val = (document.getElementById(id).value || '').trim();
+    if (!val) { showErr(id, msg); ok = false; } else clearErr(id);
+  });
+
+  // email format
+  const emailEl = document.getElementById('email');
+  if (emailEl.value && !isValidEmail(emailEl.value)) {
+    showErr('email', 'Enter a valid email address.'); ok = false;
+  }
+
+  // selects
+  [
+    ['department',      'Please select your department.'],
+    ['level',           'Please select your level.'],
+    ['submissionType',  'Please select a submission type.'],
+    ['projectCategory', 'Please select a category.'],
+    ['projectStage',    'Please select a stage.'],
+    ['weeklyHours',     'Please select commitment level.'],
+  ].forEach(([id, msg]) => {
+    const val = document.getElementById(id).value;
+    if (!val) { showErr(id, msg); ok = false; } else clearErr(id);
+  });
+
+  // textareas with min-length
+  [
+    ['problemStatement', 80, 'Problem statement must be at least 80 characters.'],
+    ['proposedSolution', 80, 'Proposed solution must be at least 80 characters.'],
+    ['whySelected',      60, 'Please write at least 60 characters for this field.'],
+  ].forEach(([id, min, msg]) => {
+    const val = (document.getElementById(id).value || '').trim();
+    if (val.length < min) { showErr(id, msg); ok = false; } else clearErr(id);
+  });
+
+  // URLs
+  ['portfolioLink','demoLink','driveLink'].forEach(id => {
+    const val = (document.getElementById(id).value || '').trim();
+    if (val && !isValidUrl(val)) {
+      showErr(id, 'Enter a valid URL (must start with https://).'); ok = false;
+    } else clearErr(id);
+  });
+
+  // consent
+  const consent = document.getElementById('consentCheck');
+  const consentErr = document.getElementById('err-consent');
+  if (!consent.checked) {
+    consentErr.style.display = 'block'; ok = false;
+  } else {
+    consentErr.style.display = 'none';
+  }
+
+  return ok;
+}
+
+/* ─── FORM SUBMIT ─── */
+document.getElementById('pipeline-form').addEventListener('submit', function(e) {
+  if (!validate()) {
+    e.preventDefault();
+    // scroll to first error
+    const firstErr = document.querySelector('.error, .field-err.show');
+    if (firstErr) {
+      firstErr.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+    return;
+  }
+
+  const btn = document.getElementById('submit-btn');
+  btn.classList.add('loading');
+  btn.disabled = true;
+
+  // listen for iframe load → success
+  const iframe = document.getElementById('submit-iframe');
+  iframe.addEventListener('load', function onLoad() {
+    iframe.removeEventListener('load', onLoad);
+    // hide form, show success
+    document.getElementById('pipeline-form').style.display = 'none';
+    document.querySelector('.form-intro').style.display = 'none';
+    const card = document.getElementById('success-card');
+    card.classList.add('show');
+    card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  });
+});
+</script>
+
 </body>
 </html>
