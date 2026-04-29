@@ -1,174 +1,700 @@
-<form id="projectForm"
-      action="https://script.google.com/macros/s/AKfycbwW-ojVHPUu1skdlTL3E1ci3MaK5Yd0zp89rZlutP_qPjftC1khcJA60Zlh0M97xDnt0w/exec"
-      method="POST"
-      target="hidden_iframe"
-      accept-charset="UTF-8">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IEEE UNIBEN SB | Project & Talent Pipeline</title>
+  <meta name="description" content="Submit your project, idea, or technical work to the IEEE UNIBEN Student Branch Talent Pipeline." />
+  <style>
+    :root{
+      --bg:#07111f;
+      --bg2:#0c1728;
+      --card:#0f1b2f;
+      --card2:#12213a;
+      --line:rgba(255,255,255,.10);
+      --text:#e9eef8;
+      --muted:#9fb0c7;
+      --accent:#d9b45a;
+      --accent2:#6ea8ff;
+      --ok:#3ddc97;
+      --danger:#ff6b6b;
+      --shadow: 0 24px 80px rgba(0,0,0,.35);
+      --radius: 22px;
+    }
 
-  <!-- PERSONAL INFO -->
-  <div class="group">
-    <h3>Personal Information</h3>
-    <div class="grid-2">
-      <div class="field">
-        <label>Full Name *</label>
-        <input name="fullName" type="text" required />
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:
+      radial-gradient(circle at top left, rgba(109,168,255,.12), transparent 25%),
+      radial-gradient(circle at top right, rgba(217,180,90,.12), transparent 24%),
+      linear-gradient(180deg, var(--bg), var(--bg2));
+      color:var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    a{color:inherit}
+    .wrap{max-width:1180px;margin:0 auto;padding:28px 18px 60px}
+    .hero{
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap:24px;
+      align-items:stretch;
+      margin-top:14px;
+    }
+
+    .panel{
+      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(18px);
+    }
+
+    .hero-copy{
+      padding:28px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .hero-copy::after{
+      content:"";
+      position:absolute; inset:auto -120px -120px auto;
+      width:260px;height:260px;border-radius:50%;
+      background: radial-gradient(circle, rgba(217,180,90,.20), transparent 68%);
+      pointer-events:none;
+    }
+
+    .eyebrow{
+      display:inline-flex;
+      gap:10px;
+      align-items:center;
+      padding:8px 14px;
+      border:1px solid rgba(217,180,90,.22);
+      background: rgba(217,180,90,.08);
+      color:#f2e6c6;
+      border-radius:999px;
+      font-size:.86rem;
+      letter-spacing:.03em;
+      font-weight:600;
+      margin-bottom:14px;
+    }
+
+    h1{
+      margin:0;
+      font-size:clamp(2rem, 4vw, 4.1rem);
+      line-height:1.02;
+      letter-spacing:-.04em;
+    }
+    .lead{
+      margin:16px 0 0;
+      max-width:62ch;
+      color:var(--muted);
+      font-size:1.02rem;
+      line-height:1.75;
+    }
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap:14px;
+      margin-top:22px;
+    }
+
+    .stat{
+      padding:16px;
+      border-radius:18px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.03);
+    }
+    .stat strong{
+      display:block;
+      font-size:1rem;
+      margin-bottom:6px;
+      color:#fff;
+    }
+    .stat span{color:var(--muted);font-size:.93rem;line-height:1.5}
+
+    .logos{
+      padding:18px;
+      display:grid;
+      gap:16px;
+    }
+
+    .logo-card{
+      border-radius:18px;
+      border:1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+      padding:18px;
+      display:flex;
+      align-items:center;
+      gap:14px;
+      min-height:124px;
+    }
+    .logo-card img{
+      width:84px;height:84px;object-fit:contain;
+      background:rgba(255,255,255,.96);
+      border-radius:18px;
+      padding:10px;
+      flex:0 0 auto;
+    }
+    .logo-card h3{margin:0 0 6px;font-size:1.02rem}
+    .logo-card p{margin:0;color:var(--muted);line-height:1.55;font-size:.92rem}
+
+    .section-note{
+      margin:22px 0 18px;
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap:14px;
+    }
+    .note{
+      padding:18px;
+      border-radius:18px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.03);
+    }
+    .note .tag{
+      display:inline-block;
+      font-size:.76rem;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      color:#d7e7ff;
+      opacity:.8;
+      margin-bottom:10px;
+    }
+    .note h4{margin:0 0 8px;font-size:1rem}
+    .note p{margin:0;color:var(--muted);line-height:1.55;font-size:.92rem}
+
+    .form-shell{
+      margin-top:20px;
+      padding:24px;
+      overflow:hidden;
+    }
+
+    .form-head{
+      display:flex;
+      justify-content:space-between;
+      gap:16px;
+      align-items:flex-start;
+      margin-bottom:18px;
+      flex-wrap:wrap;
+    }
+    .form-head h2{margin:0;font-size:1.5rem}
+    .form-head p{margin:6px 0 0;color:var(--muted);line-height:1.6;max-width:70ch}
+    .deadline{
+      padding:12px 14px;
+      border-radius:16px;
+      background: rgba(61,220,151,.08);
+      border:1px solid rgba(61,220,151,.20);
+      color:#d7ffe9;
+      font-weight:600;
+      font-size:.93rem;
+      white-space:nowrap;
+    }
+
+    form{display:grid;gap:18px}
+    .grid-2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+    .grid-3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+
+    .field{
+      display:grid;
+      gap:8px;
+    }
+    label{
+      font-size:.92rem;
+      font-weight:600;
+      color:#eaf0fb;
+    }
+    .req{color:var(--accent)}
+    input, select, textarea{
+      width:100%;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.11);
+      background: rgba(5,10,18,.62);
+      color:var(--text);
+      padding:14px 15px;
+      outline:none;
+      transition:.18s ease;
+      font:inherit;
+    }
+    textarea{min-height:130px;resize:vertical}
+    input::placeholder, textarea::placeholder{color:#7e8ea8}
+    input:focus, select:focus, textarea:focus{
+      border-color:rgba(110,168,255,.8);
+      box-shadow:0 0 0 4px rgba(110,168,255,.12);
+    }
+
+    .group{
+      padding:18px;
+      border-radius:20px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.025);
+    }
+    .group h3{
+      margin:0 0 4px;
+      font-size:1.05rem;
+    }
+    .group p{
+      margin:0 0 16px;
+      color:var(--muted);
+      line-height:1.55;
+      font-size:.93rem;
+    }
+
+    .checks{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:12px;
+    }
+    .check{
+      display:flex;
+      align-items:flex-start;
+      gap:10px;
+      padding:12px 14px;
+      border-radius:14px;
+      background: rgba(255,255,255,.03);
+      border:1px solid rgba(255,255,255,.08);
+    }
+    .check input{width:18px;height:18px;margin-top:2px;accent-color: var(--accent)}
+    .check span{color:var(--text);font-size:.95rem;line-height:1.45}
+
+    .actions{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      flex-wrap:wrap;
+      margin-top:6px;
+    }
+
+    .btn{
+      appearance:none;
+      border:none;
+      border-radius:16px;
+      padding:14px 18px;
+      background: linear-gradient(135deg, var(--accent), #f1d78f);
+      color:#171717;
+      font-weight:800;
+      font-size:1rem;
+      cursor:pointer;
+      box-shadow: 0 18px 40px rgba(217,180,90,.22);
+      transition: transform .16s ease, opacity .16s ease;
+    }
+    .btn:hover{transform: translateY(-1px)}
+    .btn:disabled{opacity:.7;cursor:not-allowed;transform:none}
+
+    .fineprint{
+      color:var(--muted);
+      line-height:1.6;
+      font-size:.92rem;
+      max-width:74ch;
+    }
+
+    .status{
+      display:none;
+      border-radius:16px;
+      padding:14px 16px;
+      margin-bottom:8px;
+      border:1px solid rgba(61,220,151,.18);
+      background: rgba(61,220,151,.08);
+      color:#ddfff0;
+      line-height:1.55;
+    }
+    .status.error{
+      border-color: rgba(255,107,107,.22);
+      background: rgba(255,107,107,.08);
+      color:#ffe3e3;
+    }
+
+    .hp{display:none !important}
+
+    iframe{display:none}
+
+    @media (max-width: 920px){
+      .hero{grid-template-columns:1fr}
+      .hero-grid,.section-note,.grid-2,.grid-3,.checks{grid-template-columns:1fr}
+      .form-head{flex-direction:column}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <section class="hero">
+      <div class="panel hero-copy">
+        <div class="eyebrow">IEEE UNIBEN Student Branch × UNIBEN</div>
+        <h1>Project & Talent Pipeline</h1>
+        <p class="lead">
+          Submit a serious project, prototype, or technical idea. Strong submissions can be shortlisted for visibility, mentorship, collaboration, and alumni attention.
+        </p>
+
+        <div class="hero-grid">
+          <div class="stat">
+            <strong>Built for real output</strong>
+            <span>Projects, prototypes, and technical work that can be reviewed and showcased.</span>
+          </div>
+          <div class="stat">
+            <strong>Selective by design</strong>
+            <span>Low-effort entries are filtered out. Quality gets visibility.</span>
+          </div>
+          <div class="stat">
+            <strong>Bridge to alumni</strong>
+            <span>Use the platform to connect good work with people who can open doors.</span>
+          </div>
+        </div>
       </div>
 
-      <div class="field">
-        <label>Email *</label>
-        <input name="email" type="email" required />
+      <div class="panel logos">
+        <div class="logo-card">
+          <img src="https://res.cloudinary.com/dc2gwj09q/image/upload/v1775458953/1003291447_884e7f98bc5c65bac74ba75d9c0ab22e-3_2_2026_8_40_50_AM_1_ha7b5r.png" alt="UNIBEN logo">
+          <div>
+            <h3>University of Benin</h3>
+            <p>Institutional identity for the pipeline.</p>
+          </div>
+        </div>
+        <div class="logo-card">
+          <img src="https://res.cloudinary.com/dc2gwj09q/image/upload/v1775459267/images__1_-removebg-preview_b40apw.png" alt="IEEE UNIBEN logo">
+          <div>
+            <h3>IEEE UNIBEN Student Branch</h3>
+            <p>Technical visibility, selection, and community value.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-note">
+      <div class="note">
+        <div class="tag">Step 1</div>
+        <h4>Submit the idea</h4>
+        <p>Fill the form with a clean project description, proof, and what support is needed.</p>
+      </div>
+      <div class="note">
+        <div class="tag">Step 2</div>
+        <h4>Review and shortlist</h4>
+        <p>Entries are screened for clarity, seriousness, feasibility, and evidence of execution.</p>
+      </div>
+      <div class="note">
+        <div class="tag">Step 3</div>
+        <h4>Showcase the best work</h4>
+        <p>Strong submissions get spotlighted so students and alumni can see the talent.</p>
+      </div>
+    </section>
+
+    <section class="panel form-shell">
+      <div class="form-head">
+        <div>
+          <h2>Submit your project</h2>
+          <p>
+            For large documents, upload them to Google Drive and paste the share link in the Drive Link field.
+            That is the stable way to handle files from GitHub Pages.
+          </p>
+        </div>
+        <div class="deadline">Call for projects is open</div>
       </div>
 
-      <div class="field">
-        <label>Phone</label>
-        <input name="phone" type="tel" />
-      </div>
+      <div id="statusBox" class="status"></div>
 
-      <div class="field">
-        <label>Department *</label>
-        <select name="department" required>
-          <option value="">Select</option>
-          <option>Electrical and Electronics Engineering</option>
-          <option>Computer Engineering</option>
-          <option>Mechanical Engineering</option>
-          <option>Other</option>
-        </select>
-      </div>
+      <form id="projectForm" action="PASTE_YOUR_WEB_APP_URL_HERE" method="POST" target="hidden_iframe" accept-charset="UTF-8">
+        <div class="group">
+          <h3>Personal information</h3>
+          <p>Use real details. Weak identity data weakens the whole system.</p>
+          <div class="grid-2">
+            <div class="field">
+              <label for="fullName">Full name <span class="req">*</span></label>
+              <input id="fullName" name="fullName" type="text" placeholder="E.g. Ebosetale Isesele" required />
+            </div>
+            <div class="field">
+              <label for="email">Email <span class="req">*</span></label>
+              <input id="email" name="email" type="email" placeholder="yourname@example.com" required />
+            </div>
+            <div class="field">
+              <label for="phone">Phone / WhatsApp</label>
+              <input id="phone" name="phone" type="tel" placeholder="+234..." />
+            </div>
+            <div class="field">
+              <label for="department">Department <span class="req">*</span></label>
+              <select id="department" name="department" required>
+                <option value="">Select department</option>
+                <option>Electrical and Electronics Engineering</option>
+                <option>Computer Engineering</option>
+                <option>Mechanical Engineering</option>
+                <option>Civil Engineering</option>
+                <option>Mechatronics Engineering</option>
+                <option>Biomedical Engineering</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="level">Level <span class="req">*</span></label>
+              <select id="level" name="level" required>
+                <option value="">Select level</option>
+                <option>100</option>
+                <option>200</option>
+                <option>300</option>
+                <option>400</option>
+                <option>500</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="submissionType">Submission type <span class="req">*</span></label>
+              <select id="submissionType" name="submissionType" required>
+                <option value="">Select type</option>
+                <option>Individual idea</option>
+                <option>Team project</option>
+                <option>Prototype</option>
+                <option>Final year project</option>
+                <option>Research / technical concept</option>
+              </select>
+            </div>
+          </div>
+        </div>
 
-      <div class="field">
-        <label>Level *</label>
-        <select name="level" required>
-          <option value="">Select</option>
-          <option>100</option>
-          <option>200</option>
-          <option>300</option>
-          <option>400</option>
-          <option>500</option>
-        </select>
-      </div>
-    </div>
+        <div class="group">
+          <h3>Project information</h3>
+          <p>This is the core of the form. Make it specific.</p>
+          <div class="grid-2">
+            <div class="field">
+              <label for="projectTitle">Project title <span class="req">*</span></label>
+              <input id="projectTitle" name="projectTitle" type="text" placeholder="E.g. Smart Energy Monitoring System" required />
+            </div>
+            <div class="field">
+              <label for="projectCategory">Project category <span class="req">*</span></label>
+              <select id="projectCategory" name="projectCategory" required>
+                <option value="">Select category</option>
+                <option>Embedded Systems</option>
+                <option>Power and Energy</option>
+                <option>Control Systems</option>
+                <option>Communications</option>
+                <option>Instrumentation</option>
+                <option>Robotics</option>
+                <option>Software / Web</option>
+                <option>AI / Data</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="projectStage">Project stage <span class="req">*</span></label>
+              <select id="projectStage" name="projectStage" required>
+                <option value="">Select stage</option>
+                <option>Idea only</option>
+                <option>In progress</option>
+                <option>Prototype complete</option>
+                <option>Testing / debugging</option>
+                <option>Completed</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="weeklyHours">Hours per week you can commit <span class="req">*</span></label>
+              <select id="weeklyHours" name="weeklyHours" required>
+                <option value="">Select commitment</option>
+                <option>1–2</option>
+                <option>3–5</option>
+                <option>6–10</option>
+                <option>10+</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="grid-2" style="margin-top:16px">
+            <div class="field">
+              <label for="problemStatement">Problem statement <span class="req">*</span></label>
+              <textarea id="problemStatement" name="problemStatement" placeholder="What problem are you solving? Why does it matter?" required minlength="60"></textarea>
+            </div>
+            <div class="field">
+              <label for="proposedSolution">Proposed solution <span class="req">*</span></label>
+              <textarea id="proposedSolution" name="proposedSolution" placeholder="Explain your approach, design, or concept." required minlength="60"></textarea>
+            </div>
+          </div>
+
+          <div class="field" style="margin-top:16px">
+            <label for="currentStatus">Current status <span class="req">*</span></label>
+            <textarea id="currentStatus" name="currentStatus" placeholder="What is already done? What is left?" required minlength="40"></textarea>
+          </div>
+        </div>
+
+        <div class="group">
+          <h3>Evidence and visibility</h3>
+          <p>Proof is what turns a claim into trust.</p>
+          <div class="grid-2">
+            <div class="field">
+              <label for="portfolioLink">Portfolio / GitHub / LinkedIn link <span class="req">*</span></label>
+              <input id="portfolioLink" name="portfolioLink" type="url" placeholder="https://..." required />
+            </div>
+            <div class="field">
+              <label for="demoLink">Demo video / presentation link</label>
+              <input id="demoLink" name="demoLink" type="url" placeholder="YouTube, Drive, or similar" />
+            </div>
+            <div class="field">
+              <label for="driveLink">Google Drive folder / file link</label>
+              <input id="driveLink" name="driveLink" type="url" placeholder="Upload documents to Drive and paste link here" />
+            </div>
+            <div class="field">
+              <label for="lecturerRecommendation">Lecturer recommendation</label>
+              <input id="lecturerRecommendation" name="lecturerRecommendation" type="text" placeholder="Name or reference of lecturer" />
+            </div>
+          </div>
+        </div>
+
+        <div class="group">
+          <h3>What do you need?</h3>
+          <p>Select all that apply.</p>
+          <div class="checks">
+            <label class="check"><input type="checkbox" name="needs" value="Team members"><span>Team members</span></label>
+            <label class="check"><input type="checkbox" name="needs" value="Technical guidance"><span>Technical guidance</span></label>
+            <label class="check"><input type="checkbox" name="needs" value="Mentorship"><span>Mentorship</span></label>
+            <label class="check"><input type="checkbox" name="needs" value="Visibility / showcase"><span>Visibility / showcase</span></label>
+            <label class="check"><input type="checkbox" name="needs" value="Review / feedback"><span>Review / feedback</span></label>
+            <label class="check"><input type="checkbox" name="needs" value="Funding / sponsorship"><span>Funding / sponsorship</span></label>
+          </div>
+        </div>
+
+        <div class="group">
+          <h3>Additional context</h3>
+          <p>Use this section to show seriousness.</p>
+          <div class="grid-2">
+            <div class="field">
+              <label for="skills">Relevant skills</label>
+              <input id="skills" name="skills" type="text" placeholder="E.g. PCB design, Arduino, MATLAB, C++, data analysis" />
+            </div>
+            <div class="field">
+              <label for="previousProjects">Completed projects / execution history</label>
+              <input id="previousProjects" name="previousProjects" type="text" placeholder="List one or two finished works" />
+            </div>
+          </div>
+
+          <div class="field" style="margin-top:16px">
+            <label for="whySelected">Why should this project be selected? <span class="req">*</span></label>
+            <textarea id="whySelected" name="whySelected" placeholder="Convince the review team in a direct, honest way." required minlength="60"></textarea>
+          </div>
+        </div>
+
+        <div class="group">
+          <h3>Final check</h3>
+          <p>Confirm that your submission is honest and complete.</p>
+          <label class="check" style="margin-bottom:0">
+            <input id="consent" name="consent" type="checkbox" value="Yes" required />
+            <span>I confirm that the information I submitted is accurate and I agree to be contacted about this project.</span>
+          </label>
+
+          <div class="hp">
+            <label>Website
+              <input type="text" name="website" tabindex="-1" autocomplete="off" />
+            </label>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button class="btn" id="submitBtn" type="submit">Submit Project</button>
+          <div class="fineprint">
+            By submitting, you are entering a review pipeline. Not every submission will be selected. Strong work gets visibility.
+          </div>
+        </div>
+      </form>
+    </section>
   </div>
 
-  <!-- PROJECT INFO -->
-  <div class="group">
-    <h3>Project Information</h3>
-    <div class="grid-2">
-      <div class="field">
-        <label>Project Title *</label>
-        <input name="projectTitle" type="text" required />
-      </div>
+  <iframe name="hidden_iframe" id="hidden_iframe"></iframe>
 
-      <div class="field">
-        <label>Project Category *</label>
-        <select name="projectCategory" required>
-          <option value="">Select</option>
-          <option>Embedded Systems</option>
-          <option>Power</option>
-          <option>Control Systems</option>
-          <option>Software / AI</option>
-        </select>
-      </div>
+  <script>
+    const form = document.getElementById('projectForm');
+    const statusBox = document.getElementById('statusBox');
+    const submitBtn = document.getElementById('submitBtn');
+    const iframe = document.getElementById('hidden_iframe');
 
-      <div class="field">
-        <label>Project Stage *</label>
-        <select name="projectStage" required>
-          <option value="">Select</option>
-          <option>Idea</option>
-          <option>In Progress</option>
-          <option>Prototype</option>
-          <option>Completed</option>
-        </select>
-      </div>
+    let submitted = false;
+    let iframeReady = false;
 
-      <div class="field">
-        <label>Weekly Commitment *</label>
-        <select name="weeklyHours" required>
-          <option value="">Select</option>
-          <option>1-2 hrs</option>
-          <option>3-5 hrs</option>
-          <option>6-10 hrs</option>
-          <option>10+ hrs</option>
-        </select>
-      </div>
-    </div>
+    function showStatus(message, isError = false) {
+      statusBox.className = isError ? 'status error' : 'status';
+      statusBox.style.display = 'block';
+      statusBox.textContent = message;
+      statusBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
 
-    <div class="field">
-      <label>Problem Statement *</label>
-      <textarea name="problemStatement" required></textarea>
-    </div>
+    function isValidName(name) {
+      return /^[A-Za-z]+(?:[ '-][A-Za-z]+)*$/.test(name.trim());
+    }
 
-    <div class="field">
-      <label>Proposed Solution *</label>
-      <textarea name="proposedSolution" required></textarea>
-    </div>
+    function isValidUrl(value) {
+      if (!value) return true;
+      try {
+        new URL(value);
+        return true;
+      } catch {
+        return false;
+      }
+    }
 
-    <div class="field">
-      <label>Current Status *</label>
-      <textarea name="currentStatus" required></textarea>
-    </div>
-  </div>
+    function validate() {
+      const fullName = document.getElementById('fullName').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const problemStatement = document.getElementById('problemStatement').value.trim();
+      const proposedSolution = document.getElementById('proposedSolution').value.trim();
+      const currentStatus = document.getElementById('currentStatus').value.trim();
+      const portfolioLink = document.getElementById('portfolioLink').value.trim();
+      const demoLink = document.getElementById('demoLink').value.trim();
+      const driveLink = document.getElementById('driveLink').value.trim();
+      const whySelected = document.getElementById('whySelected').value.trim();
+      const consent = document.getElementById('consent').checked;
+      const honeypot = document.querySelector('input[name="website"]').value.trim();
 
-  <!-- LINKS -->
-  <div class="group">
-    <h3>Proof & Links</h3>
-    <div class="grid-2">
-      <div class="field">
-        <label>Portfolio / GitHub *</label>
-        <input name="portfolioLink" type="url" required />
-      </div>
+      if (honeypot) {
+        showStatus('Submission blocked.', true);
+        return false;
+      }
 
-      <div class="field">
-        <label>Demo Link</label>
-        <input name="demoLink" type="url" />
-      </div>
+      if (!isValidName(fullName)) {
+        showStatus('Enter a proper full name. Do not put numbers or symbols in the name field.', true);
+        return false;
+      }
 
-      <div class="field">
-        <label>Google Drive Link</label>
-        <input name="driveLink" type="url" />
-      </div>
+      if (!email || !document.getElementById('email').checkValidity()) {
+        showStatus('Enter a valid email address.', true);
+        return false;
+      }
 
-      <div class="field">
-        <label>Lecturer Recommendation</label>
-        <input name="lecturerRecommendation" type="text" />
-      </div>
-    </div>
-  </div>
+      if (problemStatement.length < 60 || proposedSolution.length < 60 || currentStatus.length < 40 || whySelected.length < 60) {
+        showStatus('Your project description is too thin. Add real detail.', true);
+        return false;
+      }
 
-  <!-- NEEDS -->
-  <div class="group">
-    <h3>What do you need?</h3>
-    <label><input type="checkbox" name="needs" value="Team Members"> Team Members</label><br>
-    <label><input type="checkbox" name="needs" value="Mentorship"> Mentorship</label><br>
-    <label><input type="checkbox" name="needs" value="Funding"> Funding</label><br>
-    <label><input type="checkbox" name="needs" value="Exposure"> Exposure</label>
-  </div>
+      if (!isValidUrl(portfolioLink) || !isValidUrl(demoLink) || !isValidUrl(driveLink)) {
+        showStatus('One of your links is not a valid URL.', true);
+        return false;
+      }
 
-  <!-- FINAL -->
-  <div class="group">
-    <h3>Final Section</h3>
+      if (!consent) {
+        showStatus('You must confirm that your submission is accurate.', true);
+        return false;
+      }
 
-    <div class="field">
-      <label>Relevant Skills</label>
-      <input name="skills" type="text" />
-    </div>
+      return true;
+    }
 
-    <div class="field">
-      <label>Previous Projects</label>
-      <input name="previousProjects" type="text" />
-    </div>
+    form.addEventListener('submit', function () {
+      if (!validate()) {
+        event.preventDefault();
+        return;
+      }
 
-    <div class="field">
-      <label>Why should this project be selected? *</label>
-      <textarea name="whySelected" required></textarea>
-    </div>
+      submitted = true;
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Submitting...';
+      showStatus('Submitting your project. Do not close the page.', false);
+    });
 
-    <label>
-      <input type="checkbox" name="consent" value="Yes" required>
-      I confirm this submission is accurate
-    </label>
-  </div>
+    iframe.addEventListener('load', function () {
+      if (!iframeReady) {
+        iframeReady = true;
+        return;
+      }
 
-  <button type="submit">Submit Project</button>
-
-</form>
-
-<iframe name="hidden_iframe" style="display:none;"></iframe>
+      if (submitted) {
+        submitted = false;
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Submit Project';
+        form.reset();
+        showStatus('Submission received. Your project has entered the review pipeline.', false);
+      }
+    });
+  </script>
+</body>
+</html>
