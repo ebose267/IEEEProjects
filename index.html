@@ -1,0 +1,174 @@
+<form id="projectForm"
+      action="https://script.google.com/macros/s/AKfycbwW-ojVHPUu1skdlTL3E1ci3MaK5Yd0zp89rZlutP_qPjftC1khcJA60Zlh0M97xDnt0w/exec"
+      method="POST"
+      target="hidden_iframe"
+      accept-charset="UTF-8">
+
+  <!-- PERSONAL INFO -->
+  <div class="group">
+    <h3>Personal Information</h3>
+    <div class="grid-2">
+      <div class="field">
+        <label>Full Name *</label>
+        <input name="fullName" type="text" required />
+      </div>
+
+      <div class="field">
+        <label>Email *</label>
+        <input name="email" type="email" required />
+      </div>
+
+      <div class="field">
+        <label>Phone</label>
+        <input name="phone" type="tel" />
+      </div>
+
+      <div class="field">
+        <label>Department *</label>
+        <select name="department" required>
+          <option value="">Select</option>
+          <option>Electrical and Electronics Engineering</option>
+          <option>Computer Engineering</option>
+          <option>Mechanical Engineering</option>
+          <option>Other</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>Level *</label>
+        <select name="level" required>
+          <option value="">Select</option>
+          <option>100</option>
+          <option>200</option>
+          <option>300</option>
+          <option>400</option>
+          <option>500</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROJECT INFO -->
+  <div class="group">
+    <h3>Project Information</h3>
+    <div class="grid-2">
+      <div class="field">
+        <label>Project Title *</label>
+        <input name="projectTitle" type="text" required />
+      </div>
+
+      <div class="field">
+        <label>Project Category *</label>
+        <select name="projectCategory" required>
+          <option value="">Select</option>
+          <option>Embedded Systems</option>
+          <option>Power</option>
+          <option>Control Systems</option>
+          <option>Software / AI</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>Project Stage *</label>
+        <select name="projectStage" required>
+          <option value="">Select</option>
+          <option>Idea</option>
+          <option>In Progress</option>
+          <option>Prototype</option>
+          <option>Completed</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>Weekly Commitment *</label>
+        <select name="weeklyHours" required>
+          <option value="">Select</option>
+          <option>1-2 hrs</option>
+          <option>3-5 hrs</option>
+          <option>6-10 hrs</option>
+          <option>10+ hrs</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Problem Statement *</label>
+      <textarea name="problemStatement" required></textarea>
+    </div>
+
+    <div class="field">
+      <label>Proposed Solution *</label>
+      <textarea name="proposedSolution" required></textarea>
+    </div>
+
+    <div class="field">
+      <label>Current Status *</label>
+      <textarea name="currentStatus" required></textarea>
+    </div>
+  </div>
+
+  <!-- LINKS -->
+  <div class="group">
+    <h3>Proof & Links</h3>
+    <div class="grid-2">
+      <div class="field">
+        <label>Portfolio / GitHub *</label>
+        <input name="portfolioLink" type="url" required />
+      </div>
+
+      <div class="field">
+        <label>Demo Link</label>
+        <input name="demoLink" type="url" />
+      </div>
+
+      <div class="field">
+        <label>Google Drive Link</label>
+        <input name="driveLink" type="url" />
+      </div>
+
+      <div class="field">
+        <label>Lecturer Recommendation</label>
+        <input name="lecturerRecommendation" type="text" />
+      </div>
+    </div>
+  </div>
+
+  <!-- NEEDS -->
+  <div class="group">
+    <h3>What do you need?</h3>
+    <label><input type="checkbox" name="needs" value="Team Members"> Team Members</label><br>
+    <label><input type="checkbox" name="needs" value="Mentorship"> Mentorship</label><br>
+    <label><input type="checkbox" name="needs" value="Funding"> Funding</label><br>
+    <label><input type="checkbox" name="needs" value="Exposure"> Exposure</label>
+  </div>
+
+  <!-- FINAL -->
+  <div class="group">
+    <h3>Final Section</h3>
+
+    <div class="field">
+      <label>Relevant Skills</label>
+      <input name="skills" type="text" />
+    </div>
+
+    <div class="field">
+      <label>Previous Projects</label>
+      <input name="previousProjects" type="text" />
+    </div>
+
+    <div class="field">
+      <label>Why should this project be selected? *</label>
+      <textarea name="whySelected" required></textarea>
+    </div>
+
+    <label>
+      <input type="checkbox" name="consent" value="Yes" required>
+      I confirm this submission is accurate
+    </label>
+  </div>
+
+  <button type="submit">Submit Project</button>
+
+</form>
+
+<iframe name="hidden_iframe" style="display:none;"></iframe>
